@@ -37,7 +37,7 @@ def jugar_partida():
                         datos_jugadores['jugador2']['nombre']} es: {carta2}")
 
                     ganador_ronda(resultado, carta1, carta2, datos_jugadores, mazo_jugadores,
-                                  mesas, empate, victorias_elementos, atributo_elegido)
+                                  mesas, victorias_elementos, atributo_elegido)
 
                     if victorias_elementos["jugador1"] >= 10:
                         print(f"{datos_jugadores['jugador1']['nombre']
@@ -60,7 +60,7 @@ def jugar_partida():
                         break
 
                     rondas += 1
-                    time.sleep(2)
+                    # time.sleep(2)
 
                     determinar_ganador_final(
                         datos_jugadores, mazo_jugadores, victorias_elementos)

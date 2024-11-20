@@ -1,0 +1,13 @@
+{
+    "Fecha De partida": "20/11/2024, 16:06:59",
+    "Jugadores": {
+        "jugador1": {
+            "nombre": "jony",
+            "puntuacion": 0
+        },
+        "jugador2": {
+            "nombre": "manu",
+            "puntuacion": 107
+        }
+    }
+}
