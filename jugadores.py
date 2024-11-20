@@ -23,7 +23,7 @@ def obtener_nombres_jugadores():
     for nombres_jugadores in range(1, 3):
         nombre = validar_nombres(nombres_jugadores)
         datos_jugadores[f"jugador{nombres_jugadores}"] = {
-            "nombre": nombre, "puntuacion": 0}
+            "nombre": nombre, "puntuacion": 0, "Victorias Elementales": 0}
     return datos_jugadores
 # victoria elemental aca
 
