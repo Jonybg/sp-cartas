@@ -26,12 +26,16 @@ def comparar_cartas(carta1, carta2, atributo):
 
 
 def comparar_elementos(elemento1, elemento2):
-    retorno = "Empate"
+    retorno = "Empate"  
+    
     for elemento in tabla_debilidades:
         if elemento["elemento"] == elemento1 and elemento["debilidad"] == elemento2:
-            retorno =  "carta2"  
+            retorno = "carta2"  
+            break  
         elif elemento["elemento"] == elemento2 and elemento["debilidad"] == elemento1:
-            retorno= "carta1"  
+            retorno = "carta1"  
+            break  
+
     return retorno
 
 
