@@ -25,7 +25,6 @@ def obtener_nombres_jugadores():
         datos_jugadores[f"jugador{nombres_jugadores}"] = {
             "nombre": nombre, "puntuacion": 0, "Victorias Elementales": 0}
     return datos_jugadores
-# victoria elemental aca
 
 
 def guardar_datos_jugadores(datos_jugadores):

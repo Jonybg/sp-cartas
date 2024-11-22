@@ -17,7 +17,7 @@ def resolver_empate(ganador, pilon_mesa, mazo_jugadores, datos_jugadores):
         mazo_jugadores["jugador1"].extend(pilon_mesa)
     else:
         mazo_jugadores["jugador2"].extend(pilon_mesa)
-    pilon_mesa.clear()
+    pilon_mesa = []
 
 def verificar_ganador_por_cartas(mazo_jugadores, datos_jugadores):
     if len(mazo_jugadores["jugador1"]) == 0:

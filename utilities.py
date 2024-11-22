@@ -14,26 +14,25 @@ def elegir_atributo_aleatorio():
     return random.choice(atributos)
 
 def comparar_cartas(carta1, carta2, atributo):
+    retorno = "Empate"
     if atributo == "elemento":
-        return comparar_elementos(carta1["elemento"], carta2["elemento"])  
+        retorno = comparar_elementos(carta1["elemento"], carta2["elemento"])  
     else:
         if carta1[atributo] > carta2[atributo]:
-            return "carta1"  
+            retorno =  "carta1"  
         elif carta2[atributo] > carta1[atributo]:
-            return "carta2"  
-        else:
-            return "Empate"  
+            retorno =  "carta2"  
+    return retorno
 
 
 def comparar_elementos(elemento1, elemento2):
+    retorno = "Empate"
     for elemento in tabla_debilidades:
         if elemento["elemento"] == elemento1 and elemento["debilidad"] == elemento2:
-            return "carta2"  
+            retorno =  "carta2"  
         elif elemento["elemento"] == elemento2 and elemento["debilidad"] == elemento1:
-            return "carta1"  
-    
-
-    return "Empate"
+            retorno= "carta1"  
+    return retorno
 
 
 
