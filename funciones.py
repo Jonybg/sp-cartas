@@ -20,18 +20,17 @@ def resolver_empate(ganador, pilon_mesa, mazo_jugadores, datos_jugadores):
     pilon_mesa = []
 
 def verificar_ganador_por_cartas(mazo_jugadores, datos_jugadores):
+    ganador = None
     if len(mazo_jugadores["jugador1"]) == 0:
-        return "jugador2"
+        ganador =  "jugador2"
     elif len(mazo_jugadores["jugador2"]) == 0:
-        return "jugador1"
-    return None
+        ganador =  "jugador1"
+    return ganador
 
 def ganador_ronda(resultado, carta1, carta2, datos_jugadores, mazo_jugadores, pilon_mesa, atributo_elegido):
+    ganador = None
     if resultado == "Empate":
-
-        agregar_a_mesa(pilon_mesa, carta1, carta2)  
-        return None  
-    
+        agregar_a_mesa(pilon_mesa, carta1, carta2)   
     if resultado == "carta1":
         ganador = "jugador1"
     else:
@@ -53,16 +52,30 @@ def determinar_ganador_final(datos_jugadores: dict, mazo_jugadores: dict) -> Non
     cartas_j1 = len(mazo_jugadores["jugador1"])
     cartas_j2 = len(mazo_jugadores["jugador2"])
 
+    ganador = None  
+
+
     if datos_jugadores["jugador1"]["Victorias Elementales"] >= 10:
+        ganador = "jugador1"
         print(f"\n{datos_jugadores['jugador1']['nombre']} gana el juego con {datos_jugadores['jugador1']['Victorias Elementales']} victorias elementales!")
-        return  
-
+    
     elif datos_jugadores["jugador2"]["Victorias Elementales"] >= 10:
+        ganador = "jugador2"
         print(f"\n{datos_jugadores['jugador2']['nombre']} gana el juego con {datos_jugadores['jugador2']['Victorias Elementales']} victorias elementales!")
-        return  
 
-  
-    print("\nResumen final de las cartas:")
-    print(f"{datos_jugadores['jugador1']['nombre']} tiene {cartas_j1} cartas.")
-    print(f"{datos_jugadores['jugador2']['nombre']} tiene {cartas_j2} cartas.")
+    
+    if ganador  == None:  
+        print("\nResumen final de las cartas:")
+        print(f"{datos_jugadores['jugador1']['nombre']} tiene {cartas_j1} cartas.")
+        print(f"{datos_jugadores['jugador2']['nombre']} tiene {cartas_j2} cartas.")
+        
+        if cartas_j1 > cartas_j2:
+            ganador = "jugador1"
+            print(f"{datos_jugadores['jugador1']['nombre']} es el ganador final por tener más cartas.")
+        elif cartas_j2 > cartas_j1:
+            ganador = "jugador2"
+            print(f"{datos_jugadores['jugador2']['nombre']} es el ganador final por tener más cartas.")
+        else:
+            print("El juego termina en empate, ambos jugadores tienen la misma cantidad de cartas.")
 
+    return ganador 
