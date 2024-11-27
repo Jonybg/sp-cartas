@@ -1,15 +1,15 @@
 {
-    "Fecha De partida": "22/11/2024, 16:48:03",
+    "Fecha De partida": "26/11/2024, 09:00:25",
     "Jugadores": {
         "jugador1": {
-            "nombre": "jo",
+            "nombre": "jony",
             "puntuacion": 86,
             "Victorias Elementales": 10
         },
         "jugador2": {
-            "nombre": "ma",
-            "puntuacion": 68,
-            "Victorias Elementales": 7
+            "nombre": "agustin",
+            "puntuacion": 71,
+            "Victorias Elementales": 5
         }
     }
 }

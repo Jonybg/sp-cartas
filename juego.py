@@ -3,12 +3,14 @@ from mazo import *
 from jugadores import *
 from funciones import *
 
-def iniciar_partida():
-    mazo = cargar_mazo("cartas.csv")
+def obtener_jugadores():
     datos_jugadores = obtener_nombres_jugadores()
+    return datos_jugadores
+
+def preparar_mazo():
+    mazo = cargar_mazo("cartas.csv")
     mazo_jugadores = dividir_mazo(mazo)
-    partida_iniciada = (datos_jugadores, mazo_jugadores)
-    return partida_iniciada
+    return mazo_jugadores
 
 def mostrar_carta(carta, nombre):
     print(f"\nCarta del jugador {nombre}:")
@@ -30,37 +32,45 @@ def jugar_ronda(ronda, datos_jugadores, mazo_jugadores, mesas):
     mostrar_carta(carta2, datos_jugadores["jugador2"]["nombre"])
 
     ganador = ganador_ronda(resultado_comparacion, carta1, carta2, datos_jugadores, mazo_jugadores, mesas, atributo_elegido)
+    return ganador
 
-
-def verificar_condiciones_de_victoria(datos_jugadores, mazo_jugadores):
+def verificar_condiciones_de_victoria(datos_jugadores, mazo_jugadores,ronda,max_rondas):
     ganador = None
     ganador_por_cartas = verificar_ganador_por_cartas(mazo_jugadores, datos_jugadores)
-    
+    ganador_por_rondas = verificar_ganador_por_rondas(mazo_jugadores, ronda, max_rondas)
     if ganador_por_cartas:
         print(f"{datos_jugadores[ganador_por_cartas]['nombre']} es el ganador porque se ha quedado con todas las cartas.")
-        ganador = ganador_por_cartas
+        ganador=  ganador_por_cartas
+    
+    if ganador_por_rondas:
+        print(f"{datos_jugadores[ganador_por_rondas]['nombre']} gana por tener más cartas tras {max_rondas} rondas.")
+        ganador= ganador_por_rondas
 
     if datos_jugadores["jugador1"]["Victorias Elementales"] >= 10:
         print(f"{datos_jugadores['jugador1']['nombre']} gana con 10 victorias elementales.")
-        ganador = "jugador1"
+        ganador="jugador1"
 
     if datos_jugadores["jugador2"]["Victorias Elementales"] >= 10:
         print(f"{datos_jugadores['jugador2']['nombre']} gana con 10 victorias elementales.")
-        ganador = "jugador2"
+        ganador="jugador2"
 
     return ganador
 
+
+
+
 def ejecutar_juego():
-    datos_jugadores, mazo_jugadores = iniciar_partida()
+    datos_jugadores = obtener_jugadores()
+    mazo_jugadores = preparar_mazo()
     mesas = []
-    max_rondas = 250
+    max_rondas =250
     ronda = 1
 
     while ronda <= max_rondas:
         jugar_ronda(ronda, datos_jugadores, mazo_jugadores, mesas)
-        ganador = verificar_condiciones_de_victoria(datos_jugadores, mazo_jugadores)
-        if ganador:
+        ganador_final = verificar_condiciones_de_victoria(datos_jugadores, mazo_jugadores, ronda, max_rondas)
+        if ganador_final:
             break
-        ronda += 1 
+        ronda += 1
 
     guardar_datos_jugadores(datos_jugadores)

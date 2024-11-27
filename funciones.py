@@ -19,7 +19,7 @@ def resolver_empate(ganador, pilon_mesa, mazo_jugadores, datos_jugadores):
         mazo_jugadores["jugador2"].extend(pilon_mesa)
     pilon_mesa.clear()
 
-def verificar_ganador_por_cartas(mazo_jugadores, datos_jugadores):
+def verificar_ganador_por_cartas(mazo_jugadores,datos_jugadores):
     ganador = None
     if len(mazo_jugadores["jugador1"]) == 0:
         ganador =  "jugador2"
@@ -27,6 +27,16 @@ def verificar_ganador_por_cartas(mazo_jugadores, datos_jugadores):
         ganador =  "jugador1"
     return ganador
 
+def verificar_ganador_por_rondas(mazo_jugadores,ronda,max_ronda):
+    ganador = None
+    if ronda == max_ronda:
+        if len(mazo_jugadores["jugador1"]) > len(mazo_jugadores["jugador2"]):
+            ganador = "jugador1"
+        elif len(mazo_jugadores["jugador2"]) > len(mazo_jugadores["jugador1"]):
+            ganador = "jugador2"
+        else:
+            ganador = "empate"
+    return ganador
 def ganador_ronda(resultado, carta1, carta2, datos_jugadores, mazo_jugadores, pilon_mesa, atributo_elegido):
     
     ganador = None
