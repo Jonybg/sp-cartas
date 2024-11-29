@@ -16,9 +16,11 @@ def obtener_jugadores_del_historial(historial_partidas):
     for partida in historial_partidas:
         ganador = partida["Ganador"]
         jugadores.append({
+            "Fecha Partida":ganador["Fecha De partida"],
             "nombre": ganador["Nombre"],
             "puntuacion": ganador["Puntuacion"],
             "Victorias Elementales": ganador["Victorias Elementales"]
+    
         })
     return jugadores
 
@@ -41,7 +43,7 @@ def mostrar_jugadores_ordenados(jugadores_ordenados):
     """Muestra la lista de jugadores ordenados con sus atributos"""
     print("\nJugadores ordenados:")
     for jugador in jugadores_ordenados:
-        print(f"Fecha de partida: {jugador['Fecha De partida']}")
+        print(f"Fecha de partida: {jugador['Fecha Partida']}")
         print(f"\nNombre: {jugador['nombre']}")
         print(f"Puntuacion: {jugador['puntuacion']}")
         print(f"Victorias Elementales: {jugador['Victorias Elementales']}")
