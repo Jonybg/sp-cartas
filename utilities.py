@@ -1,4 +1,6 @@
 import random
+from mazo import *
+from jugadores import *
 
 tabla_debilidades = [
     {"elemento": "Tierra", "debilidad": "Aire"},
@@ -10,6 +12,8 @@ tabla_debilidades = [
 
 atributos = ["velocidad", "fuerza", "elemento", "peso", "altura"]
 
+
+
 def elegir_atributo_aleatorio():
     return random.choice(atributos)
 
@@ -19,9 +23,9 @@ def comparar_cartas(carta1, carta2, atributo):
         retorno = comparar_elementos(carta1["elemento"], carta2["elemento"])  
     else:
         if carta1[atributo] > carta2[atributo]:
-            retorno =  "carta1"  
+                retorno =  "carta1"  
         elif carta2[atributo] > carta1[atributo]:
-            retorno =  "carta2"  
+                retorno =  "carta2"  
     return retorno
 
 

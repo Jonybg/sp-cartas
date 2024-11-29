@@ -2,6 +2,11 @@ from utilities import *
 from mazo import *
 from jugadores import *
 from funciones import *
+from tateti import *
+
+
+
+
 
 def obtener_jugadores():
     datos_jugadores = obtener_nombres_jugadores()
@@ -9,8 +14,9 @@ def obtener_jugadores():
 
 def preparar_mazo():
     mazo = cargar_mazo("cartas.csv")
-    mazo_jugadores = dividir_mazo(mazo)
-    return mazo_jugadores
+    mazo_jugadores = mezclar_mazo(mazo)
+    mazo_mezclado = repartir_cartas(mazo_jugadores)
+    return mazo_mezclado
 
 def mostrar_carta(carta, nombre):
     print(f"\nCarta del jugador {nombre}:")
@@ -42,7 +48,7 @@ def verificar_condiciones_de_victoria(datos_jugadores, mazo_jugadores,ronda,max_
         print(f"{datos_jugadores[ganador_por_cartas]['nombre']} es el ganador porque se ha quedado con todas las cartas.")
         ganador=  ganador_por_cartas
     
-    if ganador_por_rondas:
+    elif ganador_por_rondas:
         print(f"{datos_jugadores[ganador_por_rondas]['nombre']} gana por tener más cartas tras {max_rondas} rondas.")
         ganador= ganador_por_rondas
 

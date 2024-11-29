@@ -3,10 +3,6 @@ from datetime import datetime
 
 
 fecha = datetime.now()
-# año = fecha.strftime("%Y")
-# mes = fecha.strftime("%m")
-# dia=fecha.strftime("%d")
-# reloj=fecha.strftime("%H:%M:%S")
 fecha_completa = fecha.strftime("%d/%m/%Y, %H:%M:%S")
 
 
@@ -34,6 +30,8 @@ def guardar_datos_jugadores(datos_jugadores):
         "Jugadores": datos_jugadores
 
     }
+
+
 
     with open(archivo_json, "w") as archivo:
         json.dump(datos_partida, archivo, indent=4)

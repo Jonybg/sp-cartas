@@ -1,14 +1,9 @@
 import random
 
-
 def cargar_mazo(path):
-    mazo = []
     with open(path, "r") as archivo:
-        contenido = archivo.readlines()
-        contenido.pop(0)
-        for linea in contenido:
-            valores = linea.strip().split(",")
-            carta = {
+        return [
+            {
                 "nombre": valores[0],
                 "velocidad": int(valores[1]),
                 "fuerza": int(valores[2]),
@@ -16,17 +11,24 @@ def cargar_mazo(path):
                 "peso": float(valores[4]),
                 "altura": float(valores[5])
             }
-            mazo.append(carta)
-    random.shuffle(mazo)
+            for valores in (line.split(",") for line in archivo.readlines()[1:])
+        ]
+
+def mezclar_mazo(mazo):
+    for i in range(len(mazo) - 1, 0, -1):
+        j = random.randint(0, i)  
+        mazo[i], mazo[j] = mazo[j], mazo[i]  
     return mazo
 
-
-
-
-def dividir_mazo(mazo):
-    mitad = len(mazo) // 2
-    mazo_jugadores = {
-        "jugador1": mazo[:mitad],
-        "jugador2": mazo[mitad:]
+def repartir_cartas(mazo):
+    mazos = {
+        "jugador1": [],
+        "jugador2": []
     }
-    return mazo_jugadores
+    for i in range(len(mazo)):
+        if i % 2 == 0:
+            mazos["jugador1"].append(mazo[i])  
+        else:
+            mazos["jugador2"].append(mazo[i])  
+
+    return mazos

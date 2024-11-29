@@ -1,4 +1,5 @@
 from utilities import *
+from tateti import *
 
 def agregar_a_mesa(pilon_mesa: list, carta1, carta2):
     print("Es un empate, ambas cartas se guardan en el pilón de mesa.")
@@ -8,9 +9,6 @@ def transferir_cartas(ganador, carta1, carta2, mazo_jugadores, datos_jugadores):
     agregar_cartas_a_mazo(mazo_jugadores[ganador], carta1, carta2)
     print(f"{datos_jugadores[ganador]['nombre']} gana la ronda y recibe las cartas")
 
-def incrementar_victorias_elementales(atributo_elegido, jugador, datos_jugadores):
-    if atributo_elegido == "elemento":
-        datos_jugadores[jugador]["Victorias Elementales"] += 1
 
 def resolver_empate(ganador, pilon_mesa, mazo_jugadores, datos_jugadores):
     if ganador == "jugador1":
@@ -38,19 +36,32 @@ def verificar_ganador_por_rondas(mazo_jugadores,ronda,max_ronda):
             ganador = "empate"
     return ganador
 def ganador_ronda(resultado, carta1, carta2, datos_jugadores, mazo_jugadores, pilon_mesa, atributo_elegido):
-    
     ganador = None
-    if resultado == "Empate":
-        agregar_a_mesa(pilon_mesa, carta1, carta2)
-    elif resultado == "carta1":
-        ganador = "jugador1"
-    elif resultado == "carta2":
-        ganador = "jugador2"
-    if ganador:  
-        datos_jugadores[ganador]["puntuacion"] += 1
-        transferir_cartas(ganador, carta1, carta2, mazo_jugadores, datos_jugadores)
-        resolver_empate(ganador, pilon_mesa, mazo_jugadores, datos_jugadores)
-        incrementar_victorias_elementales(atributo_elegido, ganador, datos_jugadores)
+
+    if atributo_elegido == "elemento":
+        resultado_tateti = jugar_tateti(carta1, carta2,datos_jugadores)  
+        if resultado_tateti == "jugador1":
+            ganador = "jugador1"
+            datos_jugadores["jugador1"]["Victorias Elementales"] += 1  
+        elif resultado_tateti == "jugador2":
+            ganador = "jugador2"
+            datos_jugadores["jugador2"]["Victorias Elementales"] += 1 
+        else:
+            ganador = "Empate"
+    
+    else:
+        if resultado == "Empate":
+            agregar_a_mesa(pilon_mesa, carta1, carta2)
+        elif resultado == "carta1":
+            ganador = "jugador1"
+        elif resultado == "carta2":
+            ganador = "jugador2"
+        
+        if ganador:  
+            datos_jugadores[ganador]["puntuacion"] += 1
+            transferir_cartas(ganador, carta1, carta2, mazo_jugadores, datos_jugadores)
+            resolver_empate(ganador, pilon_mesa, mazo_jugadores, datos_jugadores)
+            
 
     return ganador
 

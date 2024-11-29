@@ -1,4 +1,21 @@
 from juego import ejecutar_juego
+import pygame
+
+# pygame.init()
+# MEDIDAS = (500,500)
+# pygame.display.set_mode(MEDIDAS)
+# pygame.display.set_caption("POKEMON CARDS")
+# icono = pygame.image.load("pokemon_icono.png")
+# pygame.display.set_icon(icono)
+# flag = True
+
+# while flag:
+#     lista_eventos = pygame.event.get()
+#     for evento in lista_eventos:
+#         if evento.type == pygame.QUIT:
+#             flag = False
+#     pygame.display.update()
+# pygame.quit()
 
 def main():
     while True:
