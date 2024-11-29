@@ -38,20 +38,44 @@ def verificar_columnas(tablero, elemento):
             combinaciones += 1
     return combinaciones
 
-def verificar_diagonales(tablero, elemento):
-    combinaciones = 0
-    if tablero[0][0] == tablero[1][1] == tablero[2][2] == elemento:
-        combinaciones += 1
-    if tablero[0][2] == tablero[1][1] == tablero[2][0] == elemento:
-        combinaciones += 1
-    return combinaciones
+def verificar_diagonal_principal(tablero, elemento):
+    combinaciones = 1  
+    for i in range(len(tablero)):  
+        if tablero[i][i] != elemento:  
+            combinaciones = 0  
+            break  
+    return combinaciones  
+
+
+def verificar_diagonal_secundaria(tablero, elemento):
+    combinaciones = 1 
+    for i in range(len(tablero)):  
+        if tablero[i][len(tablero) - i - 1] != elemento: 
+            combinaciones = 0  
+            break  
+    return combinaciones 
 
 def verificar_combinaciones(tablero, elemento):
+
     combinaciones = 0
-    combinaciones += verificar_filas(tablero, elemento)
-    combinaciones += verificar_columnas(tablero, elemento)
-    combinaciones += verificar_diagonales(tablero, elemento)
+
+    filas_combinaciones = verificar_filas(tablero, elemento)
+    combinaciones += filas_combinaciones  
+    
+    
+    columnas_combinaciones = verificar_columnas(tablero, elemento)
+    combinaciones += columnas_combinaciones 
+    
+
+    diagonal_principal_combinaciones = verificar_diagonal_principal(tablero, elemento)
+    combinaciones += diagonal_principal_combinaciones 
+    
+   
+    diagonal_secundaria_combinaciones = verificar_diagonal_secundaria(tablero, elemento)
+    combinaciones += diagonal_secundaria_combinaciones  
+
     return combinaciones
+
 
 def bubble_sort(combinaciones):
     for i in range(len(combinaciones) - 1):
