@@ -29,7 +29,12 @@ def mostrar_carta(carta: dict, nombre: str) -> None:
         print(f"{atributo}: {valor}")
 
 def sacar_carta_de_cada_jugador(mazo_jugadores: dict):
-    return ((mazo_jugadores["jugador1"].pop(0)), (mazo_jugadores["jugador2"].pop(0)))
+    cartas_sacadas = []
+    for jugador, mazo in mazo_jugadores.items():
+        carta = mazo.pop(0)  
+        cartas_sacadas.append(carta)
+    return tuple(cartas_sacadas)
+
 
 def mostrar_carta_jugadores(carta1: dict, carta2: dict, datos_jugadores: dict) -> None:
     cartas = {"jugador1": carta1, "jugador2": carta2}

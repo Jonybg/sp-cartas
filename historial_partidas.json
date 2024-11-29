@@ -38,5 +38,53 @@
             "Victorias Elementales": 10,
             "Fecha De partida": "29/11/2024, 19:20:33"
         }
+    },
+    {
+        "Ganador": {
+            "Nombre": "manu",
+            "Puntuacion": 32,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "29/11/2024, 20:02:27"
+        }
+    },
+    {
+        "Ganador": {
+            "Nombre": "manu",
+            "Puntuacion": 38,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "29/11/2024, 20:02:27"
+        }
+    },
+    {
+        "Ganador": {
+            "Nombre": "manu",
+            "Puntuacion": 50,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "29/11/2024, 20:02:27"
+        }
+    },
+    {
+        "Ganador": {
+            "Nombre": "manu",
+            "Puntuacion": 29,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "29/11/2024, 20:08:10"
+        }
+    },
+    {
+        "Ganador": {
+            "Nombre": "manu",
+            "Puntuacion": 43,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "29/11/2024, 20:08:10"
+        }
+    },
+    {
+        "Ganador": {
+            "Nombre": "manu",
+            "Puntuacion": 57,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "29/11/2024, 20:08:10"
+        }
     }
 ]
