@@ -40,11 +40,13 @@ def verificar_filas(tablero: list, elemento: list) -> int:
 def verificar_columnas(tablero: list, elemento: list) -> int:
     '''Verificamos si hay combinaciones ganadoras en las columnas y devolvemos las mismas'''
     combinaciones = 0
-    for j in range(len(tablero[0])):
-        if tablero[0][j] == tablero[1][j] == tablero[2][j] == elemento:
-            combinaciones += 1
+    for j in range(len(tablero[0])):  
+        for i in range(len(tablero)):  
+            if tablero[i][j] != elemento:
+                break  
+        else:
+            combinaciones += 1 
     return combinaciones
-
 def verificar_diagonal_principal(tablero: list, elemento: list) -> int:
     '''Verificamos si hay combinaciones ganadoras en la diagonal principal y devolvemos las mismas'''
     combinaciones = 1  
