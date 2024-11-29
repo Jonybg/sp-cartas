@@ -1,10 +1,13 @@
 import random
 
-def cargar_mazo(path: str) -> list:
-    '''Carga el mazo desde un archivo CSV'''
+def cargar_mazo(path):
+    mazo = []
     with open(path, "r") as archivo:
-        return [
-            {
+        contenido = archivo.readlines()
+        contenido.pop(0)
+        for linea in contenido:
+            valores = linea.strip().split(",")
+            carta = {
                 "nombre": valores[0],
                 "velocidad": int(valores[1]),
                 "fuerza": int(valores[2]),
@@ -12,8 +15,9 @@ def cargar_mazo(path: str) -> list:
                 "peso": float(valores[4]),
                 "altura": float(valores[5])
             }
-            for valores in (line.split(",") for line in archivo.readlines()[1:])
-        ]
+            mazo.append(carta)
+    return mazo
+
     
 def mezclar_mazo(mazo: list) -> list:
     '''Mezcla el mazo usando el algoritmo de Fisher-Yates y lo devuelve'''
