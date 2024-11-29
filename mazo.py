@@ -18,6 +18,7 @@ def cargar_mazo(path):
             mazo.append(carta)
     return mazo
 
+
     
 def mezclar_mazo(mazo: list) -> list:
     '''Mezcla el mazo usando el algoritmo de Fisher-Yates y lo devuelve'''

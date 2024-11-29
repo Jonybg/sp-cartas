@@ -3,6 +3,7 @@ from mazo import *
 from jugadores import *
 from funciones import *
 from tateti import *
+import time
 
 
 
@@ -27,21 +28,28 @@ def mostrar_carta(carta: dict, nombre: str) -> None:
     for atributo, valor in carta.items():
         print(f"{atributo}: {valor}")
 
+def sacar_carta_de_cada_jugador(mazo_jugadores: dict):
+    return ((mazo_jugadores["jugador1"].pop(0)), (mazo_jugadores["jugador2"].pop(0)))
+
+def mostrar_carta_jugadores(carta1: dict, carta2: dict, datos_jugadores: dict) -> None:
+    cartas = {"jugador1": carta1, "jugador2": carta2}
+    for jugador, carta in cartas.items():
+        mostrar_carta(carta, datos_jugadores[jugador]["nombre"])
+
+
 def jugar_ronda(ronda: int, datos_jugadores: dict, mazo_jugadores: dict, mesas: list) -> str:
-    '''Printeamos la ronda actual'''
+    
     print(f"\nRonda: {ronda}")
-    '''Sacamos una carta de cada mazo'''
-    carta1 = mazo_jugadores["jugador1"].pop(0)
-    carta2 = mazo_jugadores["jugador2"].pop(0)
-    '''Elegimos un atributo aleatorio y lo mostramos'''
+    
+    carta1, carta2 = sacar_carta_de_cada_jugador(mazo_jugadores)
+    
     atributo_elegido = elegir_atributo_aleatorio(atributos)
     print(f"Atributo elegido: {atributo_elegido}")
-    '''Llamamos a la funcion para comparar las cartas'''
+    
     resultado_comparacion = comparar_cartas(carta1, carta2, atributo_elegido)
-    '''Mostramos las cartas de cada jugador'''
-    mostrar_carta(carta1, datos_jugadores["jugador1"]["nombre"])
-    mostrar_carta(carta2, datos_jugadores["jugador2"]["nombre"])
-    '''Determinamos el ganador y lo devolvemos'''
+    
+    mostrar_carta_jugadores(carta1, carta2, datos_jugadores)
+
     ganador = ganador_ronda(resultado_comparacion, carta1, carta2, datos_jugadores, mazo_jugadores, mesas, atributo_elegido)
     return ganador
 
@@ -81,7 +89,9 @@ def ejecutar_juego():
         jugar_ronda(ronda, datos_jugadores, mazo_jugadores, mesas)
         ganador_final = verificar_condiciones_de_victoria(datos_jugadores, mazo_jugadores, ronda, max_rondas)
         if ganador_final:
+            guardar_datos_jugadores(datos_jugadores,ganador_final)
             break
         ronda += 1
+        # time.sleep(2)
     '''Cuando el juego termina, guardamos los datos de los jugadores'''
-    guardar_datos_jugadores(datos_jugadores)
+   

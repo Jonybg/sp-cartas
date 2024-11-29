@@ -21,23 +21,32 @@ def obtener_nombres_jugadores()-> dict:
             "nombre": nombre, "puntuacion": 0, "Victorias Elementales": 0}
     return datos_jugadores
 
-def guardar_datos_jugadores(datos_jugadores: dict) -> None:
-    '''Guardamos los datos de los jugadores'''
+def guardar_datos_jugadores(datos_jugadores: dict, ganador_final: str) -> None:
+    '''Guardamos todos los datos del ganador en el archivo JSON'''
     archivo_json = "historial_partidas.json"
 
+    
     datos_partida = {
-        "Fecha De partida": fecha_completa,
-        "Jugadores": datos_jugadores
+        "Ganador": {
+            "Nombre": datos_jugadores[ganador_final]["nombre"],
+            "Puntuacion": datos_jugadores[ganador_final]["puntuacion"],
+            "Victorias Elementales": datos_jugadores[ganador_final]["Victorias Elementales"],
+            "Fecha De partida": fecha_completa,
+        }
     }
 
     try:
         with open(archivo_json, "r") as archivo:
             historial_partidas = json.load(archivo)
-    except:
+    except :
+ 
         historial_partidas = []
+
 
     historial_partidas.append(datos_partida)
 
+
     with open(archivo_json, "w") as archivo:
         json.dump(historial_partidas, archivo, indent=4)
+
 

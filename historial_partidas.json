@@ -1,47 +1,42 @@
 [
     {
-        "Fecha De partida": "29/11/2024, 14:12:02",
-        "Jugadores": {
-            "jugador1": {
-                "nombre": "jony",
-                "puntuacion": 61,
-                "Victorias Elementales": 10
-            },
-            "jugador2": {
-                "nombre": "manu",
-                "puntuacion": 60,
-                "Victorias Elementales": 8
-            }
+        "Ganador": {
+            "Nombre": "jony",
+            "Puntuacion": 69,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "29/11/2024, 19:14:42"
         }
     },
     {
-        "Fecha De partida": "29/11/2024, 14:12:02",
-        "Jugadores": {
-            "jugador1": {
-                "nombre": "jony",
-                "puntuacion": 45,
-                "Victorias Elementales": 9
-            },
-            "jugador2": {
-                "nombre": "manu",
-                "puntuacion": 57,
-                "Victorias Elementales": 10
-            }
+        "Ganador": {
+            "Nombre": "jony",
+            "Puntuacion": 85,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "29/11/2024, 19:14:42"
         }
     },
     {
-        "Fecha De partida": "29/11/2024, 14:12:02",
-        "Jugadores": {
-            "jugador1": {
-                "nombre": "jony",
-                "puntuacion": 61,
-                "Victorias Elementales": 10
-            },
-            "jugador2": {
-                "nombre": "manu",
-                "puntuacion": 72,
-                "Victorias Elementales": 8
-            }
+        "Ganador": {
+            "Nombre": "jony",
+            "Puntuacion": 46,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "29/11/2024, 19:14:42"
+        }
+    },
+    {
+        "Ganador": {
+            "Nombre": "jony",
+            "Puntuacion": 41,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "29/11/2024, 19:20:33"
+        }
+    },
+    {
+        "Ganador": {
+            "Nombre": "manu",
+            "Puntuacion": 57,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "29/11/2024, 19:20:33"
         }
     }
 ]
