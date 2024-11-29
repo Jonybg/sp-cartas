@@ -43,5 +43,290 @@
                 "Victorias Elementales": 10
             }
         }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:20:45",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 81,
+                "Victorias Elementales": 9
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 74,
+                "Victorias Elementales": 10
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:26:06",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 52,
+                "Victorias Elementales": 10
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 40,
+                "Victorias Elementales": 8
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:41:52",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 60,
+                "Victorias Elementales": 8
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 54,
+                "Victorias Elementales": 10
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:43:05",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 27,
+                "Victorias Elementales": 4
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 13,
+                "Victorias Elementales": 10
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:43:28",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "m\\jjony",
+                "puntuacion": 94,
+                "Victorias Elementales": 19
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 101,
+                "Victorias Elementales": 9
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:44:58",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 46,
+                "Victorias Elementales": 8
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 37,
+                "Victorias Elementales": 10
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:50:07",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 32,
+                "Victorias Elementales": 4
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 49,
+                "Victorias Elementales": 10
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:51:16",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 62,
+                "Victorias Elementales": 10
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 57,
+                "Victorias Elementales": 6
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:51:45",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 44,
+                "Victorias Elementales": 6
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 37,
+                "Victorias Elementales": 10
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:52:24",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 41,
+                "Victorias Elementales": 10
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 26,
+                "Victorias Elementales": 8
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:54:12",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 39,
+                "Victorias Elementales": 4
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 43,
+                "Victorias Elementales": 10
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:55:29",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 60,
+                "Victorias Elementales": 7
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 59,
+                "Victorias Elementales": 10
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:57:16",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 49,
+                "Victorias Elementales": 9
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 36,
+                "Victorias Elementales": 10
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:58:31",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 38,
+                "Victorias Elementales": 6
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 38,
+                "Victorias Elementales": 10
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 12:59:58",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 38,
+                "Victorias Elementales": 10
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 50,
+                "Victorias Elementales": 9
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 13:01:56",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 76,
+                "Victorias Elementales": 10
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 71,
+                "Victorias Elementales": 6
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 13:02:05",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 37,
+                "Victorias Elementales": 10
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 23,
+                "Victorias Elementales": 1
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 13:02:05",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 50,
+                "Victorias Elementales": 8
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 57,
+                "Victorias Elementales": 10
+            }
+        }
+    },
+    {
+        "Fecha De partida": "29/11/2024, 13:07:11",
+        "Jugadores": {
+            "jugador1": {
+                "nombre": "jony",
+                "puntuacion": 33,
+                "Victorias Elementales": 6
+            },
+            "jugador2": {
+                "nombre": "manu",
+                "puntuacion": 23,
+                "Victorias Elementales": 10
+            }
+        }
     }
 ]

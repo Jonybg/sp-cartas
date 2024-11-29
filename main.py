@@ -18,6 +18,7 @@ import pygame
 # pygame.quit()
 
 def main():
+    '''Funcion principal del programa'''
     while True:
         opcion = input("1: Jugar 2: Salir: ")
         match opcion:
