@@ -29,64 +29,31 @@ def imprimir_tablero(tablero: list) -> None:
         print("-" * 5) 
 
 
-def verificar_filas(tablero: list, elemento: list) -> int:
-    '''Verificamos si hay combinaciones ganadoras en las filas y devolvemos las mismas'''
+def verificar_combinaciones(tablero: list, elemento: str, verificar_func, rango: int) -> int:
+    '''Función genérica para verificar combinaciones utilizando una función de verificación específica'''
     combinaciones = 0
-    for i in range(len(tablero)):
-        if tablero[i][0] == tablero[i][1] == tablero[i][2] == elemento:
+    for i in range(rango):
+        if verificar_func(tablero, i, elemento):  
             combinaciones += 1
     return combinaciones
 
-def verificar_columnas(tablero: list, elemento: list) -> int:
-    '''Verificamos si hay combinaciones ganadoras en las columnas y devolvemos las mismas'''
-    combinaciones = 0
-    for j in range(len(tablero[0])):  
-        for i in range(len(tablero)):  
-            if tablero[i][j] != elemento:
-                break  
-        else:
-            combinaciones += 1 
-    return combinaciones
-def verificar_diagonal_principal(tablero: list, elemento: list) -> int:
-    '''Verificamos si hay combinaciones ganadoras en la diagonal principal y devolvemos las mismas'''
-    combinaciones = 1  
-    for i in range(len(tablero)):
-        if tablero[i][i] != elemento:  
-            combinaciones = 0  
-            break  
-    return combinaciones  
-
-
-def verificar_diagonal_secundaria(tablero: list, elemento: list) -> int:
-    '''Verificamos si hay combinaciones ganadoras en la diagonal secundaria y devolvemos las mismas'''
-    combinaciones = 1 
-    for i in range(len(tablero)):  
-        if tablero[i][len(tablero) - i - 1] != elemento: 
-            combinaciones = 0  
-            break  
-    return combinaciones 
-
-def verificar_combinaciones(tablero: list, elemento: list) -> int:
-    '''Verificamos si hay combinaciones ganadoras en el tablero y devolvemos las mismas'''
-    combinaciones = 0
-
-    filas_combinaciones = verificar_filas(tablero, elemento)
-    combinaciones += filas_combinaciones  
-    
-    
-    columnas_combinaciones = verificar_columnas(tablero, elemento)
-    combinaciones += columnas_combinaciones 
-    
-
-    diagonal_principal_combinaciones = verificar_diagonal_principal(tablero, elemento)
-    combinaciones += diagonal_principal_combinaciones 
-    
-   
-    diagonal_secundaria_combinaciones = verificar_diagonal_secundaria(tablero, elemento)
-    combinaciones += diagonal_secundaria_combinaciones  
-
-    return combinaciones
-
+def verificar_filas(tablero: list, i: int, elemento: str) -> bool:
+    return tablero[i][0] == tablero[i][1] == tablero[i][2] == elemento
+def verificar_columnas(tablero: list, i: int, elemento: str) -> bool:
+    return tablero[0][i] == tablero[1][i] == tablero[2][i] == elemento
+def verificar_diagonal_principal(tablero: list, elemento: str) -> bool:
+    return tablero[0][0] == tablero[1][1] == tablero[2][2] == elemento
+def verificar_diagonal_secundaria(tablero: list, elemento: str) -> bool:
+    return tablero[0][2] == tablero[1][1] == tablero[2][0] == elemento
+def verificar_combinaciones_totales(tablero: list, elemento: str) -> int:
+    combinaciones_totales = 0
+    combinaciones_totales += verificar_combinaciones(tablero, elemento, verificar_filas, 3)
+    combinaciones_totales += verificar_combinaciones(tablero, elemento, verificar_columnas, 3)
+    if verificar_diagonal_principal(tablero, elemento):
+        combinaciones_totales += 1
+    if verificar_diagonal_secundaria(tablero, elemento):
+        combinaciones_totales += 1
+    return combinaciones_totales
 
 def bubble_sort(combinaciones: list) -> list:
     '''Ordenamos las combinaciones de mayor a menor'''
@@ -127,8 +94,9 @@ def jugar_tateti(carta1: list, carta2: list, datos_jugadores: dict) -> str:
     jugador2 = elementos[1]
     nombre_jugador1 = datos_jugadores["jugador1"]["nombre"]
     nombre_jugador2 = datos_jugadores["jugador2"]["nombre"] 
-    combinaciones_jugador1 = verificar_combinaciones(tablero, jugador1)
-    combinaciones_jugador2 = verificar_combinaciones(tablero, jugador2)
+    
+    combinaciones_jugador1 = verificar_combinaciones_totales(tablero, jugador1)
+    combinaciones_jugador2 = verificar_combinaciones_totales(tablero, jugador2)
     
     print("Tablero:")
     imprimir_tablero(tablero)
@@ -142,6 +110,3 @@ def jugar_tateti(carta1: list, carta2: list, datos_jugadores: dict) -> str:
     
     resultado = determinar_ganador(combinaciones_ordenadas, combinaciones_jugador1, combinaciones_jugador2)
     return resultado
-
-
-

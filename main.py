@@ -1,26 +1,22 @@
 from juego import ejecutar_juego
 from ordenamiento import *
 import pygame
+from boton import *
 
-# pygame.init()
-# MEDIDAS = (500,500)
-# pygame.display.set_mode(MEDIDAS)
-# pygame.display.set_caption("POKEMON CARDS")
-# icono = pygame.image.load("pokemon_icono.png")
-# pygame.display.set_icon(icono)
-# flag = True
-
-# while flag:
-#     lista_eventos = pygame.event.get()
-#     for evento in lista_eventos:
-#         if evento.type == pygame.QUIT:
-#             flag = False
-#         elif evento.type == pygame.KEYDOWN:
-#             nombre = pygame.key.name(evento.key)
-#             print(f"tecla presionada:{nombre}")
-
-#     pygame.display.update()
-# pygame.quit()
+pygame.init()
+MEDIDAS = (800,800)
+ventana = pygame.display.set_mode(MEDIDAS)
+pygame.display.set_caption("POKEMON CARDS")
+icono = pygame.image.load("pokemon_icono.png")
+pygame.display.set_icon(icono)
+flag = True
+while flag:
+    lista_eventos = pygame.event.get()
+    for evento in lista_eventos:
+        if evento.type == pygame.QUIT:
+            flag = False
+    pygame.display.update()
+pygame.quit()
 
 def main():
     '''Funcion principal del programa'''
