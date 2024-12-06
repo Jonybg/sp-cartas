@@ -7,7 +7,9 @@ def crear_carta(valores):
                 "fuerza": int(valores[2]),
                 "elemento": valores[3],
                 "peso": float(valores[4]),
-                "altura": float(valores[5])
+                "altura": float(valores[5]),
+                "path":valores[6],
+                "elemento_imagen":valores[7]
             }
     return carta
 
