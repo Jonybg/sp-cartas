@@ -3,8 +3,9 @@ import pygame
 from time import sleep
 from mazo import *
 from jugadores import *
-from tateti import jugar_tateti
+from tateti import *
 from juego import *
+
 atributos = ["velocidad", "fuerza", "elemento", "peso", "altura"]
 
 def elegir_atributo_aleatorio(atributos: list) -> str:
@@ -22,57 +23,93 @@ def agregar_cartas_a_mazo(mazo: list, carta1: dict, carta2: dict) -> None:
     mazo.extend([carta1, carta2])
 
 def renderizar_carta(pantalla, carta, pos_x, pos_y, fuente, nombre_jugador):
-    # Dibujar el contenedor de la carta
-    pygame.draw.rect(pantalla, (255, 255, 255), (pos_x, pos_y, 200, 300))
-    pygame.draw.rect(pantalla, (0, 0, 0), (pos_x, pos_y, 200, 300), 2)
-
-    # Cargar el sprite desde el path de la carta
+    # Cargar la plantilla de fondo
     try:
-        sprite = pygame.image.load(carta["path"])
-        sprite = pygame.transform.scale(sprite, (180, 100))  # Redimensionar la imagen
-        pantalla.blit(sprite, (pos_x + 10, pos_y + 10))  # Dibujar la imagen en la carta
+        plantilla = pygame.image.load("template.jpg").convert_alpha()  # Cargar con soporte para transparencia
+        plantilla = pygame.transform.scale(plantilla, (200, 300))  # Escalar al tamaño deseado
+        pantalla.blit(plantilla, (pos_x, pos_y))  # Dibujar la plantilla en la posición especificada
+    except pygame.error:
+        print("Error al cargar la plantilla de fondo: template.png")
+
+    # Cargar el sprite principal desde el path de la carta
+    try:
+        sprite = pygame.image.load(carta["path"]).convert_alpha() # Usar transparencia si es necesario
+        sprite = pygame.transform.scale(sprite, (100, 100))  # Redimensionar la imagen
+        pantalla.blit(sprite, (pos_x + 50, pos_y + 40))  # Dibujar la imagen en la carta
     except pygame.error:
         print(f"Error al cargar el sprite: {carta['path']}")
 
-    # Dibujar las propiedades debajo de la imagen
+    # Renderizar la imagen del elemento
+    try:
+        elemento_sprite = pygame.image.load(carta["elemento_imagen"]).convert_alpha()  # Usar transparencia
+        elemento_sprite = pygame.transform.scale(elemento_sprite, (50, 50))  # Redimensionar el ícono del elemento
+        pantalla.blit(elemento_sprite, (pos_x + 150, pos_y + 10))  # Posición del ícono
+    except pygame.error:
+        print(f"Error al cargar el ícono del elemento: {carta['elemento_imagen']}")
+
+    # Dibujar las propiedades encima de la plantilla
     propiedades = [
-        (f"Nombre: {carta['nombre']}", pos_x + 10, pos_y + 120),
-        (f"Velocidad: {carta['velocidad']}", pos_x + 10, pos_y + 160),
+        (f"{carta['nombre']}", pos_x + 75, pos_y + 20),
+        (f"Velocidad: {carta['velocidad']}", pos_x + 10, pos_y + 180),
         (f"Fuerza: {carta['fuerza']}", pos_x + 10, pos_y + 200),
-        (f"Elemento: {carta['elemento']}", pos_x + 10, pos_y + 240),
-        (f"Peso: {carta['peso']:.1f}", pos_x + 10, pos_y + 280),
-        (f"Altura: {carta['altura']:.1f}", pos_x + 10, pos_y + 320),
+        (f"Elemento: {carta['elemento']}", pos_x + 10, pos_y + 220),
+        (f"Peso: {carta['peso']:.1f}", pos_x + 10, pos_y + 240),
+        (f"Altura: {carta['altura']:.1f}", pos_x + 10, pos_y + 260),
     ]
 
+    # Reducir el tamaño del texto para evitar que sobresalga
+    fuente_propiedades = pygame.font.Font(None, 18)  # Tamaño de fuente más pequeño
     for texto, x, y in propiedades:
-        texto_renderizado = fuente.render(texto, True, (0, 0, 0))
+        texto_renderizado = fuente_propiedades.render(texto, True, (0, 0, 0))
         pantalla.blit(texto_renderizado, (x, y))
 
-    renderizar_texto(pantalla, nombre_jugador, pos_x + 10, pos_y - 30, fuente)
+    # Dibujar el nombre del jugador encima de la plantilla
+    renderizar_texto(pantalla, nombre_jugador, pos_x + 10, pos_y + 10, fuente)
+
 
 def renderizar_texto(pantalla, texto, pos_x, pos_y, fuente):
     texto_renderizado = fuente.render(texto, True, (0, 0, 0))  
     pantalla.blit(texto_renderizado, (pos_x, pos_y))
 
+
 def mostrar_tablero_tateti(pantalla, tablero, fuente):
-    y_pos = 100
+    # Centrar el tablero de Tateti en la pantalla
+    y_pos = 250  # Ajustamos para centrar el tablero
     for fila in tablero:
-        fila_texto = " | ".join(fila)
-        texto_renderizado = fuente.render(fila_texto, True, (0, 0, 0))
-        pantalla.blit(texto_renderizado, (200, y_pos))
-        y_pos += 40
+        x_pos = 440  # Centrado horizontalmente
+        for celda in fila:
+            if celda.endswith(".png"):  # Asumimos que las celdas contienen paths de imágenes
+                try:
+                    elemento_sprite = pygame.image.load(celda)
+                    elemento_sprite = pygame.transform.scale(elemento_sprite, (40, 40))
+                    pantalla.blit(elemento_sprite, (x_pos, y_pos))
+                except pygame.error:
+                    print(f"Error al cargar el ícono del tateti: {celda}")
+            else:
+                texto_renderizado = fuente.render(celda, True, (0, 0, 0))
+                pantalla.blit(texto_renderizado, (x_pos, y_pos))
+            x_pos += 60
+        y_pos += 60
+    pygame.display.flip()
 
 def mostrar_cartas_ronda(pantalla, carta1, carta2, fuente, atributo_elegido, nombre_jugador1, nombre_jugador2):
-    pantalla.fill((34, 139, 34))  
-    renderizar_carta(pantalla, carta1, 100, 200, fuente, nombre_jugador1)  
-    renderizar_carta(pantalla, carta2, 400, 200, fuente, nombre_jugador2)  
-    renderizar_texto(pantalla, f"Atributo elegido: {atributo_elegido}", 250, 50, fuente)
+    pantalla.fill((34, 139, 34))  # Color de fondo verde para el tablero
+    
+    # Primera carta a la izquierda y segunda carta a la derecha
+    renderizar_carta(pantalla, carta1, 100, 150, fuente, nombre_jugador1)  
+    renderizar_carta(pantalla, carta2, 500, 150, fuente, nombre_jugador2)  
+    
+    # Atributo elegido centrado en la parte superior
+    renderizar_texto(pantalla, f"Atributo elegido: {atributo_elegido}", 540, 50, fuente)
+
+    # Resultado de la ronda debajo del atributo
+    renderizar_texto(pantalla, "Ganador de la ronda:", 540, 90, fuente)  
     pygame.display.flip()
 
 def mostrar_resultado_ronda(pantalla, ganador, fuente):
     texto = f"Ganador de la ronda: {ganador}"
     texto_renderizado = fuente.render(texto, True, (255, 0, 0))
-    pantalla.blit(texto_renderizado, (250, 100))  
+    pantalla.blit(texto_renderizado, (540, 120))  # Mostrar el resultado en una posición clara
     pygame.display.flip()
     sleep(0.2)  
 
@@ -106,8 +143,8 @@ def jugar_con_pygame(datos_jugadores, mazo_jugadores):
                 else:
                     ganador = "Empate"
                 
-                elementos = [carta1["elemento"], carta2["elemento"]]
-                tablero = crear_tablero(elementos, 3, 3)
+                elementos = [carta1["elemento_imagen"], carta2["elemento_imagen"]]
+                tablero = [[elementos[0]] * 3, [elementos[1]] * 3, [""] * 3]  # Tablero ejemplo
                 mostrar_tablero_tateti(pantalla, tablero, fuente)
 
             else:
@@ -127,10 +164,11 @@ def jugar_con_pygame(datos_jugadores, mazo_jugadores):
             running = False
 
         reloj.tick(30)
-        time.sleep(10)
+        sleep(10)
 
     pygame.quit()
 
+# Suponiendo que estas funciones devuelven los datos necesarios para comenzar el juego.
 datos_jugadores = obtener_jugadores()
 mazo_jugadores = preparar_mazo()
 jugar_con_pygame(datos_jugadores, mazo_jugadores)
