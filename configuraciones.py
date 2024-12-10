@@ -7,8 +7,6 @@ def inicializar_ventana():
     ALTO_VENTANA = 720
 
     pygame.init()
-    pygame.mixer.init()
-
     ventana_ppal = pygame.display.set_mode((ANCHO_VENTANA, ALTO_VENTANA))
     
     pygame.display.set_caption("POKE CARDS")

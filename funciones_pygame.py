@@ -1,9 +1,10 @@
-import pygame
+from xd import *
 def jugar():
-    print("jugando")
+    print("Jugando...")
 
 def ranking():
-    print("ranking")
+    print("Mostrando Ranking...")
 
 def salir():
-    print("salir")
+    print("Saliendo...")
+    exit()

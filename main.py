@@ -5,6 +5,8 @@ from boton import *
 from funciones_pygame import *
 from configuraciones import *
 from input import *
+from xd import *
+from jugadores import *
 pygame.mixer.init()
 
 def reproducir_musica():
@@ -53,6 +55,16 @@ def manejador_eventos(lista_botones, input1, input2, input_activo, fase, jugador
 
     return flag_run, input_activo, fase, jugadores
 
+def preparar_datos_jugadores(jugadores):
+    datos_jugadores = {}
+    for key, nombre in jugadores.items():
+        datos_jugadores[key] = {
+            "nombre": nombre, 
+            "puntuacion": 0, 
+            "Victorias Elementales": 0
+        }
+    return datos_jugadores
+
 
 def main_pygame():
     ventana_ppal, fondo = inicializar_ventana()
@@ -100,18 +112,12 @@ def main_pygame():
             dibujar_input(input1)
             dibujar_input(input2)
         elif fase == "jugando":
-            ventana_ppal.fill((0, 0, 0))  
-            fuente = pygame.font.SysFont("consolas", 40)
-
-            mensaje_jugando = fuente.render("¡Jugando!", True, (255, 255, 255))
-            texto_jugador1 = fuente.render(f"Jugador 1: {jugadores.get('jugador1', 'No asignado')}", True, (255, 255, 255))
-            texto_jugador2 = fuente.render(f"Jugador 2: {jugadores.get('jugador2', 'No asignado')}", True, (255, 255, 255))
-
-
-            ventana_ppal.blit(mensaje_jugando, (ventana_ppal.get_width() // 2 - mensaje_jugando.get_width() // 2, ventana_ppal.get_height() // 4))
-            ventana_ppal.blit(texto_jugador1, (ventana_ppal.get_width() // 2 - texto_jugador1.get_width() // 2, ventana_ppal.get_height() // 2 - 40))
-            ventana_ppal.blit(texto_jugador2, (ventana_ppal.get_width() // 2 - texto_jugador2.get_width() // 2, ventana_ppal.get_height() // 2 + 40))
-
+            datos_jugadores = preparar_datos_jugadores(jugadores)
+            mazo_jugadores = preparar_mazo()
+            jugar_con_pygame(datos_jugadores,mazo_jugadores)
+            
+            pygame.quit()
+            
         pygame.display.update()
 
     pygame.quit()
@@ -120,21 +126,21 @@ def main_pygame():
 main_pygame()
 
 
-def main():
-    '''Funcion principal del programa'''
-    while True:
-        opcion = input("1: Jugar 2:Ranking 3: Salir: ")
-        match opcion:
-            case "1":
-                ejecutar_juego()
-            case "2":
-                criterio = input("¿Por qué criterio deseas ordenar? (puntuacion/Victorias Elementales): ")
-                orden = input("¿En qué orden deseas ver el ranking? (asc/desc): ")
-                ordenar(criterio, orden)  
-            case "3":
-                print("Saliendo...")
-                break
-            case _:
-                print("Opción inválida")
+# def main():
+#     '''Funcion principal del programa'''
+#     while True:
+#         opcion = input("1: Jugar 2:Ranking 3: Salir: ")
+#         match opcion:
+#             case "1":
+#                 ejecutar_juego()
+#             case "2":
+#                 criterio = input("¿Por qué criterio deseas ordenar? (puntuacion/Victorias Elementales): ")
+#                 orden = input("¿En qué orden deseas ver el ranking? (asc/desc): ")
+#                 ordenar(criterio, orden)  
+#             case "3":
+#                 print("Saliendo...")
+#                 break
+#             case _:
+#                 print("Opción inválida")
         
-main()
+# main()

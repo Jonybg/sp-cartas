@@ -26,7 +26,6 @@ def validar_nombres(nombre_jugador: str) -> str:
     return nombre
 
 def obtener_nombres_jugadores() -> dict:
-
     datos_jugadores = {}
     for nombres_jugadores in range(1, 3):
         nombre = validar_nombres(nombres_jugadores)
@@ -53,3 +52,4 @@ def guardar_datos_jugadores(datos_jugadores: dict, ganador_final: str) -> None:
 
     historial_partidas.append(datos_partida)
     manejar_archivo_json(archivo_json, "escribir", historial_partidas)
+ 

@@ -3,11 +3,8 @@ from mazo import *
 from jugadores import *
 from funciones import *
 from tateti import *
+from main import *
 import time
-
-
-
-
 
 def obtener_jugadores() -> dict:
     '''Obtenemos los nombres de los jugadores'''
