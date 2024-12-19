@@ -14,7 +14,7 @@ def inicializar_ventana():
     icono = pygame.image.load(r"pokemon_icono.png")
     pygame.display.set_icon(icono)
 
-    fondo = pygame.image.load(r"pikachu.jpg")
+    fondo = pygame.image.load(r"fondo.jpg")
     fondo = pygame.transform.scale(fondo,(ANCHO_VENTANA, ALTO_VENTANA))
 
     return ventana_ppal, fondo
@@ -22,15 +22,16 @@ def inicializar_ventana():
 
 def crear_botones_dinamicos(ventana_ppal):
     lista = []
-    dimension = (100,100)
-    paths = [r"PLAY.png",r"RANKING.png" , r"CERRAR.png"]
-    posicion_inicial = [500,80]
-    acciones = ["jugar" , "ranking" , "salir"]
-    i = 0
-    for accion in acciones:
+    dimension = (200, 60)  
+    posicion_inicial = [320, 650] 
+    acciones = ["jugar", "ranking", "salir"]
+    textos = ["Play", "Ranking", "Close"]
+    espaciado = 20 
+
+    for i, (accion, texto) in enumerate(zip(acciones, textos)):
         funcion = globals()[accion]
-        boton = crear_boton(dimension,posicion_inicial,ventana_ppal,funcion,paths[i])
+        posicion = [posicion_inicial[0] + i * (dimension[0] + espaciado), posicion_inicial[1]]
+        boton = crear_boton(dimension, posicion, ventana_ppal, funcion, texto)
         lista.append(boton)
-        posicion_inicial = [posicion_inicial[0], posicion_inicial[1] + 200] 
-        i += 1
+
     return lista

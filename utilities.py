@@ -5,6 +5,7 @@ from tateti import jugar_tateti
 atributos = ["velocidad", "fuerza", "elemento", "peso", "altura"]
 
 def elegir_atributo_aleatorio(atributos: list) -> str:
+    
     '''Elige un atributo aleatorio'''
     return random.choice(atributos)
 
