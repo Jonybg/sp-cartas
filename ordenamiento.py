@@ -16,13 +16,11 @@ def obtener_jugadores_del_historial(historial_partidas):
     jugadores = []
     for partida in historial_partidas:
         ganador = partida["Ganador"]
-        
-        # Cambiar el formato de la fecha a "%d/%m/%Y, %H:%M:%S"
         fecha_partida = datetime.strptime(ganador["Fecha De partida"], "%d/%m/%Y, %H:%M:%S")
-        fecha_formateada = fecha_partida.strftime("%d/%m/%Y %H:%M")  # Puedes modificar el formato
+        fecha_formateada = fecha_partida.strftime("%d/%m/%Y %H:%M")  
 
         jugadores.append({
-            "Fecha Partida": fecha_formateada,  # Usamos la fecha formateada
+            "Fecha Partida": fecha_formateada, 
             "nombre": ganador["Nombre"],
             "puntuacion": ganador["Puntuacion"],
             "Victorias Elementales": ganador["Victorias Elementales"]

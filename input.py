@@ -37,4 +37,5 @@ def escribir(input, evento):
     else:
         input["Texto"] += evento.unicode
     
+    
     print(f"Texto actualizado: {input['Texto']}")

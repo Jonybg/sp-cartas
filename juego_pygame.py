@@ -421,10 +421,11 @@ def jugar_con_pygame(datos_jugadores, mazo_jugadores):
             ganador_final = verificar_condiciones_de_victoria(pantalla, fuente, datos_jugadores, mazo_jugadores, ronda, max_rondas)
             if ganador_final:
                 guardar_datos_jugadores(datos_jugadores, ganador_final)
-                return "inicio"
+                break
     
             
         else:
             running = False
+            return "inicio"
 
     return "inicio"

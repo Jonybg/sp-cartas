@@ -34,6 +34,12 @@ def main_pygame():
         fase = data["fase"]
         jugadores =data["jugadores"]
         if fase == "inicio":
+            input1["activo"] = False
+            input2["activo"] = False
+            input1["texto"] = ""
+            input2["texto"] = ""
+            cambiar_color(input1)
+            cambiar_color(input2)
             jugadores = {}
             pantalla_inicio(ventana=ventana_ppal, fondo=fondo, lista_botones=lista_botones)
         elif fase == "ingresar_nombres":
