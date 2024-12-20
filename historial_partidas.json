@@ -6,5 +6,21 @@
             "Victorias Elementales": 10,
             "Fecha De partida": "19/12/2024, 22:13:31"
         }
+    },
+    {
+        "Ganador": {
+            "Nombre": "1",
+            "Puntuacion": 101,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "20/12/2024, 09:04:48"
+        }
+    },
+    {
+        "Ganador": {
+            "Nombre": "1",
+            "Puntuacion": 60,
+            "Victorias Elementales": 10,
+            "Fecha De partida": "20/12/2024, 09:04:48"
+        }
     }
 ]
