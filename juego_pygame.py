@@ -12,23 +12,15 @@ EVENTO_CLICK_BOTON = pygame.USEREVENT + 1
 EVENTO_INPUT_SELECCIONADO = pygame.USEREVENT + 2
 EVENTO_NOMBRE_GUARDADO = pygame.USEREVENT + 3
 EVENTO_JUEGO_LISTO = pygame.USEREVENT + 4
+EVENTO_CLICK_SONIDO = pygame.event.custom_type()
 
 campo_batalla = pygame.image.load("campo_batalla.jpg")
 campo_batalla = pygame.transform.scale(campo_batalla, (1280, 720))
-
+sonido_activado = True
 def reproducir_musica():
     pygame.mixer.music.load("intro.mp3")
     pygame.mixer.music.set_volume(0.5)
     pygame.mixer.music.play(-1)
-
-sonido_activado = True
-
-def crear_boton_inicio(ventana):
-    boton_atras = crear_boton((100, 50), (1150, 20), ventana, texto="Inicio")
-    dibujar(boton_atras)
-    return boton_atras
-
-
 def toggle_sound():
     """Activa o desactiva el sonido globalmente (música y efectos)."""
     global sonido_activado
@@ -39,22 +31,18 @@ def toggle_sound():
     else:
         pygame.mixer.music.set_volume(0.5)  
         sonido_activado = True
-
-def manejar_click_sonido(evento, boton_sonido):
-    """Maneja el clic en el botón de sonido."""
-    if evento.type == pygame.MOUSEBUTTONDOWN:
-        if boton_sonido["Rectangulo"].collidepoint(evento.pos):
-            toggle_sound()
-    return boton_sonido
-
 def reproducir_efecto_sonido(sonido_path):
     """Reproduce un efecto de sonido si el sonido está activado."""
     if sonido_activado:
         efecto_sonido = pygame.mixer.Sound(sonido_path)
         efecto_sonido.set_volume(0.5)  
         efecto_sonido.play()
-
-
+def manejar_click_sonido(evento, boton_sonido):
+    """Handles clicking the sound toggle button."""
+    if evento.type == pygame.MOUSEBUTTONDOWN:
+        if boton_sonido["Rectangulo"].collidepoint(evento.pos):
+            toggle_sound()  
+    return boton_sonido
 def preparar_datos_jugadores(jugadores):
     datos_jugadores = {}
     for key, nombre in jugadores.items():
@@ -64,7 +52,17 @@ def preparar_datos_jugadores(jugadores):
             "Victorias Elementales": 0
         }
     return datos_jugadores
+def crear_boton_inicio(ventana):
+    boton_atras = crear_boton((100, 50), (1150, 20), ventana, texto="Inicio")
+    dibujar(boton_atras)
+    return boton_atras
 
+def manejar_click_sonido(evento, boton_sonido):
+    """Maneja el clic en el botón de sonido."""
+    if evento.type == EVENTO_CLICK_SONIDO:
+        if boton_sonido["Rectangulo"].collidepoint(evento.pos):
+            toggle_sound()
+    return boton_sonido
 def manejar_evento_cierre(evento, flag_run):
     """Maneja el evento de cierre de la ventana."""
     if evento.type == pygame.QUIT:
@@ -78,7 +76,8 @@ def manejar_click_boton(lista_botones, evento, fase):
         fase = "ranking"
     elif fase == "inicio" and lista_botones[0]["Rectangulo"].collidepoint(evento.pos):
         fase = "ingresar_nombres"
-
+    elif fase == "inicio" and lista_botones[2]["Rectangulo"].collidepoint(evento.pos):
+        pygame.quit()
     return fase
 
 
@@ -163,7 +162,11 @@ def manejar_estado_fase(evento, fase, jugadores):
         pygame.event.post(pygame.event.Event(EVENTO_JUEGO_LISTO))
         return "jugando"
     return fase
-
+def manejador_eventos_cierre(eventos):
+    for evento in eventos:
+        if evento.type == pygame.QUIT:  
+            return False 
+    return True
 def manejador_eventos(lista_botones, input1, input2, input_activo, fase, jugadores, ventana, boton_sonido):
     eventos = pygame.event.get()
     flag_run = manejar_eventos_cierre(eventos)
@@ -184,26 +187,11 @@ def manejador_eventos(lista_botones, input1, input2, input_activo, fase, jugador
         "fase": fase,
         "jugadores": jugadores,
     }
-
-
-
 def toggle_sound_button(ventana):
     """Creates and draws a toggle sound button."""
-    boton_sonido = crear_boton(
-        (100, 50), 
-        (20, 20),   
-        ventana, 
-        texto="Sonido"
-    )
+    boton_sonido = crear_boton((100, 50),(20, 20),ventana, texto="Sonido")
     dibujar(boton_sonido)
     return boton_sonido
-def manejar_click_sonido(evento, boton_sonido):
-    """Handles clicking the sound toggle button."""
-    if evento.type == pygame.MOUSEBUTTONDOWN:
-        if boton_sonido["Rectangulo"].collidepoint(evento.pos):
-            toggle_sound()  
-    return boton_sonido
-
 def agregar_cartas_a_mazo(mazo: list, carta1: dict, carta2: dict) -> None:
     mazo.extend([carta1, carta2])
 
@@ -433,7 +421,7 @@ def jugar_con_pygame(datos_jugadores, mazo_jugadores):
             pygame.display.flip()
 
             ronda += 1
-            # time.sleep(2)
+            # time.sleep(5)
             ganador_final = verificar_condiciones_de_victoria(pantalla, fuente, datos_jugadores, mazo_jugadores, ronda, max_rondas)
             if ganador_final:
                 guardar_datos_jugadores(datos_jugadores, ganador_final)

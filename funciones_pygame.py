@@ -8,7 +8,7 @@ def ranking():
 
 def salir():
     pygame.quit()
-    quit()
+    exit()
 
 # def atras():
 #     print("Atras..")

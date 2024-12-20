@@ -8,7 +8,7 @@ def manejar_archivo_json(archivo, accion):
         with open(archivo, "r") as file:
             data = json.load(file)
         return data
-    except FileNotFoundError:
+    except:
         return []
 
 
@@ -50,10 +50,10 @@ def mostrar_jugadores_ordenados(jugadores_ordenados, ventana):
         texto_puntuacion = fuente.render(f"Puntuacion: {jugador['puntuacion']}", True, (255, 255, 255))
         texto_victorias = fuente.render(f"Victorias Elementales: {jugador['Victorias Elementales']}", True, (255, 255, 255))
 
-        ventana.blit(texto_fecha, (50, y_pos +20))
-        ventana.blit(texto_nombre, (50, y_pos + 50))
-        ventana.blit(texto_puntuacion, (50, y_pos + 80))
-        ventana.blit(texto_victorias, (50, y_pos + 110))
+        ventana.blit(texto_fecha, (20, y_pos +20))
+        ventana.blit(texto_nombre, (20, y_pos + 50))
+        ventana.blit(texto_puntuacion, (20, y_pos + 80))
+        ventana.blit(texto_victorias, (20, y_pos + 110))
 
         y_pos += 130  
         contador += 1  

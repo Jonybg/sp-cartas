@@ -9,9 +9,7 @@ def pantalla_inicio(ventana, fondo, lista_botones):
     ventana.blit(fondo, (0, 0))
     for boton in lista_botones:  
         dibujar(boton)
-    # for i in range(3):
-    #       dibujar_botones([lista_botones[i]])
-    # boton_sonido = toggle_sound_button(ventana)
+    boton_sonido = toggle_sound_button(ventana)
 
 def pantalla_ingresar_nombres(ventana_ppal, fondo, input1, input2, jugadores,input1_pos,input2_pos):
             ventana_ppal.fill((0, 0, 0)) 

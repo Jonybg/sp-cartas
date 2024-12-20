@@ -28,10 +28,13 @@ def crear_botones_dinamicos(ventana_ppal):
     textos = ["Play", "Ranking", "Close"]
     espaciado = 20 
 
-    for i, (accion, texto) in enumerate(zip(acciones, textos)):
-        funcion = globals()[accion]
-        posicion = [posicion_inicial[0] + i * (dimension[0] + espaciado), posicion_inicial[1]]
+    i = 0  
+    for accion in acciones:
+        texto = textos[i]  
+        funcion = globals()[accion]  
+        posicion = [posicion_inicial[0] + i * (dimension[0] + espaciado), posicion_inicial[1]] 
         boton = crear_boton(dimension, posicion, ventana_ppal, funcion, texto)
-        lista.append(boton)
+        lista.append(boton)  
+        i += 1  
 
     return lista
