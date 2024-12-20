@@ -37,12 +37,7 @@ def reproducir_efecto_sonido(sonido_path):
         efecto_sonido = pygame.mixer.Sound(sonido_path)
         efecto_sonido.set_volume(0.5)  
         efecto_sonido.play()
-def manejar_click_sonido(evento, boton_sonido):
-    """Handles clicking the sound toggle button."""
-    if evento.type == pygame.MOUSEBUTTONDOWN:
-        if boton_sonido["Rectangulo"].collidepoint(evento.pos):
-            toggle_sound()  
-    return boton_sonido
+
 def preparar_datos_jugadores(jugadores):
     datos_jugadores = {}
     for key, nombre in jugadores.items():
@@ -59,7 +54,7 @@ def crear_boton_inicio(ventana):
 
 def manejar_click_sonido(evento, boton_sonido):
     """Maneja el clic en el botón de sonido."""
-    if evento.type == EVENTO_CLICK_SONIDO:
+    if evento.type == pygame.MOUSEBUTTONDOWN:
         if boton_sonido["Rectangulo"].collidepoint(evento.pos):
             toggle_sound()
     return boton_sonido
@@ -422,6 +417,7 @@ def jugar_con_pygame(datos_jugadores, mazo_jugadores):
 
             ronda += 1
             # time.sleep(5)
+            reloj.tick(60)
             ganador_final = verificar_condiciones_de_victoria(pantalla, fuente, datos_jugadores, mazo_jugadores, ronda, max_rondas)
             if ganador_final:
                 guardar_datos_jugadores(datos_jugadores, ganador_final)
