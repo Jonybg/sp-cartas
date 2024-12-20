@@ -8,11 +8,8 @@ from juego import *
 from input import *
 from boton import *
 import pygame
-EVENTO_CLICK_BOTON = pygame.USEREVENT + 1
-EVENTO_INPUT_SELECCIONADO = pygame.USEREVENT + 2
-EVENTO_NOMBRE_GUARDADO = pygame.USEREVENT + 3
-EVENTO_JUEGO_LISTO = pygame.USEREVENT + 4
-EVENTO_CLICK_SONIDO = pygame.event.custom_type()
+EVENTO_JUEGO_LISTO = pygame.USEREVENT + 1
+
 
 campo_batalla = pygame.image.load("campo_batalla.jpg")
 campo_batalla = pygame.transform.scale(campo_batalla, (1280, 720))

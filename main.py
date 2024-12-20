@@ -38,8 +38,6 @@ def main_pygame():
             input2["activo"] = False
             input1["texto"] = ""
             input2["texto"] = ""
-            cambiar_color(input1)
-            cambiar_color(input2)
             jugadores = {}
             pantalla_inicio(ventana=ventana_ppal, fondo=fondo, lista_botones=lista_botones)
         elif fase == "ingresar_nombres":
